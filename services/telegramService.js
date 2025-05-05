@@ -4,7 +4,6 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const CHANNEL_ID = -1002156879723;
 
 function getNextTemplate(product) {
-  const index = Math.floor(Math.random() * templates.length);
   const templates = [
     (product) =>
       `📢 **דיל חם מעלי אקספרס! 🔥**\n\n🛍️ **${product.productTitle}**\n💰 **מחיר:** ${product.salePrice}\n🔻 **הנחה:** ${product.discount}%\n👇לקנייה מעליאקספרס👇\n\n🔗 **קנה עכשיו:** [👉 לחץ כאן](${product.productLink})\n\n#AliExpress #Deals\n\n📢 https://t.me/+syM0COFeS10yNDU8`,
@@ -36,6 +35,7 @@ function getNextTemplate(product) {
     (product) =>
       `📢 **מציאה מיוחדת מאלי אקספרס!**\n\n📦 ${product.productTitle}\n💵 מחיר מבצע: ${product.salePrice}\n📉 ${product.discount}% הנחה!\n\n🔗 [קנייה מיידית](${product.productLink})\n\n📢 אל תפספסו דילים נוספים: https://t.me/+syM0COFeS10yNDU8`,
   ];
+  const index = Math.floor(Math.random() * templates.length);
 
   return templates[index](product); // יישום התבנית הנבחרת
 }
