@@ -67,27 +67,29 @@ let currentIndex = 0;
 async function sendProduct() {
   const product = products[currentIndex];
   let lastIndex = -1;
+  if (product[currentIndex]) {
+    const message = "asd";
+    // getNextTemplate(product, lastIndex);
 
-  const message = getNextTemplate(product, lastIndex);
+    try {
+      await axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+        chat_id: CHANNEL_ID,
+        photo: product.image,
+        caption: message,
+        parse_mode: "Markdown",
+      });
 
-  try {
-    await axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-      chat_id: CHANNEL_ID,
-      photo: product.image,
-      caption: message,
-      parse_mode: "Markdown",
-    });
+      console.log(`📤 Sent product: ${product.productTitle}`);
+    } catch (error) {
+      console.error(
+        "❌ Error sending product:",
+        error.response?.data || error.message
+      );
+    }
 
-    console.log(`📤 Sent product: ${product.productTitle}`);
-  } catch (error) {
-    console.error(
-      "❌ Error sending product:",
-      error.response?.data || error.message
-    );
+    // Move to the next product
+    currentIndex = (currentIndex + 1) % products.length;
   }
-
-  // Move to the next product
-  currentIndex = (currentIndex + 1) % products.length;
 }
 
 // Schedule: send a product every hour (3600000 ms)

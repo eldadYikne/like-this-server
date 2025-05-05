@@ -65,14 +65,14 @@ async function startPosting() {
 
   if (products.length === 0) {
     console.log("❌ אין מוצרים מתאימים.");
-    return;
+    // return;
   }
 
   let index = 0;
 
   async function postNextProduct() {
     if (index >= products.length) index = 0;
-    await sendProduct(products[index]);
+    // await sendProduct(products[index]);
     index++;
   }
 
