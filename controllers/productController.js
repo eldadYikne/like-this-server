@@ -2,7 +2,7 @@ const { sendProduct } = require("../services/telegramService");
 
 exports.publishProductFromRequest = async (req, res) => {
   const product = req.body;
-
+  console.log("product", product);
   // בדיקה בסיסית לתקינות הקלט
   const requiredFields = [
     "productTitle",
